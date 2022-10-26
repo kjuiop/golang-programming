@@ -16,6 +16,10 @@ func main() {
 	}
 	defer h.Close()
 
-	str, _, _ := h.httpClient.Get("http://localhost:3010/api/transcoder/v2/hello/test", 3)
-	fmt.Println(str)
+	res, err := h.httpClient.GetRequest("http://localhost:3010/api/transcoder/v2/hello/test", 3)
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(res)
 }
