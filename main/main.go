@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/sirupsen/logrus"
 	"log"
 	"os"
 )
@@ -20,6 +21,10 @@ func main() {
 	if err != nil {
 		fmt.Println(err)
 	}
+	prefix := h.log.WithFields(logrus.Fields{})
+	prefix.Data["url"] = "http://localhost:3010/api/transcoder/v2/hello/test"
+	prefix.Data["response"] = res
+	prefix.Data["connection_time_out"] = 3
 
-	fmt.Println(res)
+	h.log.Info(prefix, "http get test")
 }

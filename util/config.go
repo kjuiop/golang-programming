@@ -6,6 +6,10 @@ import (
 )
 
 type Config struct {
+	LogInfo struct {
+		LogPath  string `envconfig:"REPORT_LOG_PATH" default:"log/programming.log"`
+		LogLevel string `envconfig:"REPORT_LOG_LEVEL" default:"debug"`
+	}
 }
 
 func ConfInitialize() (*Config, error) {
