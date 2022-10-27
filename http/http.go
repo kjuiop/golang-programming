@@ -53,7 +53,6 @@ func (httpClient *HttpClient) GetRequest(url string, to int) (map[string]interfa
 	if err != nil {
 		return nil, err
 	}
-	fmt.Printf("http response : %v", res)
 	return ResponseHandler(res)
 }
 

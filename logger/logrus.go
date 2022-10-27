@@ -4,6 +4,7 @@ import (
 	"fmt"
 	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
 	"github.com/sirupsen/logrus"
+	"io"
 	"log"
 	"os"
 	"runtime"
@@ -32,7 +33,8 @@ func LogInitialize(fileName, level string) (*Logrus, error) {
 			return nil, err
 		}
 
-		l.log.SetOutput(apiLogger)
+		multiWriter := io.MultiWriter(os.Stdout, apiLogger)
+		l.log.SetOutput(multiWriter)
 	} else {
 		l.log.SetOutput(os.Stdout)
 	}
