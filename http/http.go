@@ -67,7 +67,7 @@ func ResponseHandler(resp *http.Response) (map[string]interface{}, error) {
 	}
 }
 
-//response가 정상일 경우 map 형태로 받아오도록 구성하였습니다
+// response 가 정상일 경우 map 형태로 받아오도록 구성하였습니다
 func parseBody(response *http.Response) (map[string]interface{}, error) {
 	res := make(map[string]interface{})
 	if err := json.NewDecoder(response.Body).Decode(&res); err != nil {
